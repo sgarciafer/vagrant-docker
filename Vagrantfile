@@ -81,8 +81,8 @@ Vagrant.configure(2) do |config|
     sudo apt-key add DEB-GPG-KEY-puppet
 
     sudo apt-get update
-    sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
-    sudo apt-get install docker-engine
+    sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
+    sudo apt-get install -y docker-engine
     sudo service docker start
 #   sudo apt-get install -y apache2
   SHELL
