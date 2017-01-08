@@ -83,7 +83,12 @@ Vagrant.configure(2) do |config|
     sudo apt-get update
     sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
     sudo apt-get install -y docker-engine
-    sudo service docker start
+    sudo apt-get install -y nginx
+
+    #automatically start nginx when server restarts if it's not the case
+    sudo update-rc.d nginx defaults
+
+#    sudo service docker start
 #   sudo apt-get install -y apache2
   SHELL
 end
