@@ -1,0 +1,27 @@
+# Drupal with Mariadb
+#
+# Access via "http://localhost:8080" (or "http://$(docker-machine ip):8080" if using docker-machine)
+
+version: '2'
+
+services:
+
+  drupal:
+    image: drupal:8.2.5-apache
+    ports:
+      - 8080:80
+    restart: always
+
+  mariadb:
+    image: mariadb:latest
+    command: mysqld --innodb-buffer-pool-size=20M
+    volumes:
+      - "./mariadb:/var/lib/mysql:rw"
+    environment:
+      - MYSQL_DATABASE=my_db_name
+      - MYSQL_USER=my_db_user
+      - MYSQL_PASSWORD=my_db_user_passwd
+      - MYSQL_ROOT_PASSWORD=my_db_root_passwd
+    ports:
+      - "3306:3306"
+    restart: always
