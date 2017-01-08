@@ -66,13 +66,20 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
-    groupadd docker
-    usermod -a -G docker vagrant
+    sudo groupadd docker
+    sudo usermod -a -G docker vagrant
     sudo apt-get install apt-transport-https ca-certificates  
     sudo apt-key adv \
                --keyserver hkp://ha.pool.sks-keyservers.net:80 \
                --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-    echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee /etc/apt/sources.list.d/docker.list
+    sudo echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee /etc/apt/sources.list.d/docker.list
+
+    ## Puppet labs GPG update, avoid warning on apt-get update
+    sudo apt-get upgrade puppetlabs-release-pc1
+    curl --remote-name --location https://apt.puppetlabs.com/DEB-GPG-KEY-puppet
+    gpg --keyid-format 0xLONG --with-fingerprint ./DEB-GPG-KEY-puppet
+    sudo apt-key add DEB-GPG-KEY-puppet
+
     sudo apt-get update
     sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
     sudo apt-get install docker-engine
