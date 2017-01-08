@@ -93,6 +93,10 @@ Vagrant.configure(2) do |config|
     #automatically start nginx when server restarts if it's not the case
     sudo update-rc.d nginx defaults
 
+    #install composer
+    sudo apt-get install curl php5-cli git
+    sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+    
 #    sudo service docker start
 #   sudo apt-get install -y apache2
   SHELL

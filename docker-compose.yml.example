@@ -6,11 +6,31 @@ version: '2'
 
 services:
 
-  drupal:
+  web1:
     image: drupal:8.2.5-apache
     ports:
-      - 8080:80
+      - 8081:80
     restart: always
+
+  web2:
+    image: drupal:7.53-apache
+    ports:
+      - 8082:80
+    restart: always
+
+  web3:
+    build: node
+    links:
+      - mongodb
+    ports:
+      - "9000:9000"
+      - "8083:80"
+
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - /data/db
+    command: --break-mongo
 
   mariadb:
     image: mariadb:latest
@@ -18,10 +38,7 @@ services:
     volumes:
       - "./mariadb:/var/lib/mysql:rw"
     environment:
-      - MYSQL_DATABASE=my_db_name
-      - MYSQL_USER=my_db_user
-      - MYSQL_PASSWORD=my_db_user_passwd
-      - MYSQL_ROOT_PASSWORD=my_db_root_passwd
+      - MYSQL_ROOT_PASSWORD=root
     ports:
       - "3306:3306"
     restart: always
