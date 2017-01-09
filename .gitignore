@@ -4,7 +4,7 @@
 .vagrant
 /iso
 /vendor
-/web1/html
-/web2/html
-/web3/html
-
+/web1/www/html
+/web2/www/html
+/web3/data
+/mariadb/db
