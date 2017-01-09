@@ -7,18 +7,19 @@ version: '2'
 services:
 
   web1:
-    image: drupal:8.2.5-apache
+    build: web1
     volumes:
-      - /vagrant/web1:/var/www:rw
+      - /vagrant/web1/www:/var/www/:rw
     ports:
       - 8081:80
     restart: always
     tty: true
 
   web2:
-    image: drupal:7.53-apache
+    build: web2
+#drupal:7.53-apache
     volumes:
-      - /vagrant/web2:/var/www:rw
+      - /vagrant/web2/www:/var/www:rw
     ports:
       - 8082:80
     restart: always
