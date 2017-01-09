@@ -1,0 +1,11 @@
+{
+  "name": "MyHelloWorld",
+  "description": "Another test app",
+  "author": "Cube Inspire <s.garcia.fer@gmail.com>",
+  "version": "1.0.0",
+  "repository": "",
+  "licence": "All Rights Reserved",
+  "dependencies": {
+    "express": "4.12.0"
+  } 
+}

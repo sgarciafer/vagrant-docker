@@ -10,6 +10,8 @@ services:
     build: web1
     volumes:
       - /vagrant/web1/www:/var/www/:rw
+    links:
+      - mariadb
     ports:
       - 8081:80
     restart: always
@@ -17,9 +19,10 @@ services:
 
   web2:
     build: web2
-#drupal:7.53-apache
     volumes:
       - /vagrant/web2/www:/var/www:rw
+    links: 
+      - mariadb
     ports:
       - 8082:80
     restart: always
@@ -32,7 +35,7 @@ services:
     links:
       - mongo
     ports:
-      - "8083:80"
+      - "8083:3000"
     tty: true
 
   mongo:
